@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace BusinessLogic
 {
@@ -11,7 +12,16 @@ namespace BusinessLogic
         /// <returns></returns>
         public static bool IsSsn(string ssn)
         {
-            throw new NotImplementedException();
+
+            //Regex ssnRegex = new Regex(@"^\d{ 3 } -\d{ 2}-\d{ 4}$");
+            string SSNPattern = @"^\d{3}\-?\d{2}\-?\d{4}$";
+            Regex regex = new Regex(SSNPattern);
+
+            if (regex.IsMatch(ssn))
+                return true;
+
+            return false;
+
         }
 
         /// <summary>
@@ -23,7 +33,10 @@ namespace BusinessLogic
         /// <returns></returns>
         public static bool IsWithinRange(int numToTest, int minValue, int maxValue)
         {
-            throw new NotImplementedException();
+            if (numToTest >= minValue && numToTest <= maxValue)
+                return true;
+
+            return false;
         }
     }
 }
